@@ -1,0 +1,46 @@
+from ebook import Ebook
+from catalog import Catalog
+from customer_account import CustomerAccount
+from shopping_cart import ShoppingCart
+from order import Order
+from payment import CreditCard
+from purchase import Purchase
+from datetime import date
+
+if __name__ == "__main__":
+    # Create ebooks
+    ebook1 = Ebook("The Little Prince", "Fatma Mohammed", "April 6, 1943", "Children's literature", 57.23)
+    ebook2 = Ebook("Starting Out with Python", "Noora Ahmed", "March 6, 2017", "Programming", 460.15)
+
+    # Create a catalog and add ebooks
+    catalog = Catalog()
+    catalog.add_book(ebook1)
+    catalog.add_book(ebook2)
+
+    # Create a customer account
+    customer = CustomerAccount("Fatma", "Fatma1@gmail.com", "123456789", "123 Zayed University Street, Dubai", is_loyal_member=True)
+
+    # Create a shopping cart and add ebooks
+    cart = ShoppingCart()
+    cart.add_ebook(ebook1, 2)
+    cart.add_ebook(ebook2, 1)
+
+    # Print objects for all the classes
+    print("Ebook 1:", ebook1)
+    print("Ebook 2:", ebook2)
+    print("Catalog:", catalog.list_books())
+    print("Customer:", customer)
+    print("Shopping Cart:", cart.view_cart())
+    print("Total Price in Cart:", cart.get_total_price())
+
+    # Create an order
+    order = Order(customer, [ebook1, ebook2])
+
+    # Select payment method
+    payment = CreditCard("1234567890123456", "11/08", "123")
+
+    # Create a purchase
+    purchase = Purchase(order, payment)
+
+    # Print invoice
+    print(purchase.generate_invoice())
