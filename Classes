@@ -162,7 +162,7 @@ class ShoppingCart:
 
 class Order:
   """Class to represent a an order. Contains association with CustomerAccount and aggregated Ebook objects."""
-  def __init__(self, customer, books, order_date=date.today(), status=""):
+  def __init__(self, customer, books, order_date=date.today(), status="pending"):
     self._customer = customer
     self._books = books
     self._order_date = order_date
